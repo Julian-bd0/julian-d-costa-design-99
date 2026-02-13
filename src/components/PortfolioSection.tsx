@@ -2,15 +2,22 @@ import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { X } from "lucide-react";
 
+import portfolioBranding from "@/assets/portfolio-branding.jpg";
+import portfolioLogo from "@/assets/portfolio-logo.jpg";
+import portfolioCertificate from "@/assets/portfolio-certificate.jpg";
+import portfolioSocial from "@/assets/portfolio-social.jpg";
+import portfolioBrochure from "@/assets/portfolio-brochure.jpg";
+import portfolioBanner from "@/assets/portfolio-banner.jpg";
+
 const categories = ["All", "Logo", "Branding", "Print", "Social Media"];
 
 const portfolioItems = [
-  { title: "Church Branding Identity", category: "Branding", color: "from-primary to-primary-glow" },
-  { title: "Youth Organization Logo", category: "Logo", color: "from-primary-glow to-primary" },
-  { title: "Event Certificate Design", category: "Print", color: "from-primary to-blue-400" },
-  { title: "Social Media Campaign", category: "Social Media", color: "from-blue-400 to-primary-glow" },
-  { title: "Archdiocese Brochure", category: "Print", color: "from-primary-glow to-primary" },
-  { title: "Community Event Banner", category: "Branding", color: "from-primary to-primary-glow" },
+  { title: "Church Branding Identity", category: "Branding", image: portfolioBranding },
+  { title: "Youth Organization Logo", category: "Logo", image: portfolioLogo },
+  { title: "Event Certificate Design", category: "Print", image: portfolioCertificate },
+  { title: "Social Media Campaign", category: "Social Media", image: portfolioSocial },
+  { title: "Archdiocese Brochure", category: "Print", image: portfolioBrochure },
+  { title: "Community Event Banner", category: "Branding", image: portfolioBanner },
 ];
 
 const PortfolioSection = () => {
@@ -56,13 +63,17 @@ const PortfolioSection = () => {
               }`}
               style={{ animationDelay: `${i * 0.1}s` }}
             >
-              <div className={`aspect-[4/3] bg-gradient-to-br ${item.color} flex items-center justify-center p-6`}>
-                <div className="text-center text-primary-foreground">
-                  <div className="w-16 h-16 rounded-full border-2 border-primary-foreground/30 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <span className="text-2xl font-bold">{item.title.charAt(0)}</span>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/40 transition-colors duration-300 flex items-center justify-center">
+                  <div className="text-center text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                    <h3 className="font-semibold text-lg">{item.title}</h3>
+                    <span className="text-sm text-primary-foreground/80">{item.category}</span>
                   </div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <span className="text-xs text-primary-foreground/70">{item.category}</span>
                 </div>
               </div>
             </div>
@@ -72,18 +83,18 @@ const PortfolioSection = () => {
         {/* Lightbox */}
         {lightbox !== null && (
           <div className="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in" onClick={() => setLightbox(null)}>
-            <div className="relative max-w-2xl w-full rounded-2xl overflow-hidden animate-scale-in" onClick={(e) => e.stopPropagation()}>
+            <div className="relative max-w-3xl w-full rounded-2xl overflow-hidden animate-scale-in bg-card" onClick={(e) => e.stopPropagation()}>
               <button onClick={() => setLightbox(null)} className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/90 flex items-center justify-center text-foreground hover:bg-background transition-colors">
                 <X size={20} />
               </button>
-              <div className={`aspect-[4/3] bg-gradient-to-br ${filtered[lightbox].color} flex items-center justify-center p-8`}>
-                <div className="text-center text-primary-foreground">
-                  <div className="w-24 h-24 rounded-full border-2 border-primary-foreground/30 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-4xl font-bold">{filtered[lightbox].title.charAt(0)}</span>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">{filtered[lightbox].title}</h3>
-                  <span className="text-primary-foreground/70">{filtered[lightbox].category}</span>
-                </div>
+              <img
+                src={filtered[lightbox].image}
+                alt={filtered[lightbox].title}
+                className="w-full object-contain max-h-[80vh]"
+              />
+              <div className="p-4 text-center">
+                <h3 className="text-xl font-bold text-foreground">{filtered[lightbox].title}</h3>
+                <span className="text-sm text-muted-foreground">{filtered[lightbox].category}</span>
               </div>
             </div>
           </div>
