@@ -24,7 +24,7 @@ const AboutSection = () => {
 
           {/* Text */}
           <div className={`space-y-6 ${isVisible ? "animate-slide-in-right" : "opacity-0"}`}>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed text-justify">
               Julian is a <strong className="text-primary">Graphics Designer</strong> experienced in logo design, brochures, banners, certificates, and social media design. He currently serves as a Graphics Designer at{" "}
               <strong className="text-primary">Chattogram Catholic Archdiocese</strong> (2023–Present), contributing to organizational branding and youth initiatives.
             </p>

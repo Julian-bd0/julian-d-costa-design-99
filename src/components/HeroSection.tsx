@@ -37,7 +37,7 @@ const HeroSection = () => {
             <p className="text-lg text-primary-foreground/80 mb-4 font-light animate-fade-up" style={{ animationDelay: "0.3s" }}>
               Professional Graphics Designer
             </p>
-            <p className="text-primary-foreground/70 max-w-lg mx-auto mb-8 leading-relaxed animate-fade-up" style={{ animationDelay: "0.35s" }}>
+            <p className="text-primary-foreground/70 max-w-lg mx-auto mb-8 leading-relaxed text-justify animate-fade-up" style={{ animationDelay: "0.35s" }}>
               A dedicated Graphics Designer specializing in logo design, branding, and print materials. Creating clean, impactful, and purpose-driven visual identities for organizations and youth communities.
             </p>
             <div className="flex flex-wrap gap-4 justify-center animate-fade-up" style={{ animationDelay: "0.4s" }}>
